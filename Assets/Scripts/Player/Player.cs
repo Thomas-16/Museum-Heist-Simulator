@@ -24,6 +24,7 @@ public class Player : Character
     [SerializeField] private Vector3 eyeNormalPos;
     [SerializeField] private Vector3 eyeRunningPos;
     [SerializeField] private float eyeTransitionSpeed = 5f;
+    [SerializeField] private float cameraNoiseTransitionSpeed = 10f;
 
 
     private new void Awake() {
@@ -51,6 +52,22 @@ public class Player : Character
 
         Vector3 targetEyePos = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f && characterMovement.forwardSpeed > 0.01f ? eyeRunningPos : eyeNormalPos;
         eyeTransform.localPosition = Vector3.Lerp(eyeTransform.localPosition, targetEyePos, eyeTransitionSpeed * Time.deltaTime);
+
+        float targetAmplitude = 0f, targetFrequency = 0f;
+        if(characterMovement.velocity.sqrMagnitude < 0.01f) {
+            targetAmplitude = 0.4f;
+            targetFrequency = 0.25f;
+        } else if(!isRunning && characterMovement.velocity.sqrMagnitude > 0.01f) {
+            targetAmplitude = 0.4f;
+            targetFrequency = 0.77f;
+        } else if(isRunning && characterMovement.velocity.sqrMagnitude > 0.01f) {
+            targetAmplitude = 0.43f;
+            targetFrequency = 1.2f;
+        }
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain =
+            Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain, targetAmplitude, cameraNoiseTransitionSpeed * Time.deltaTime);
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain =
+            Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain, targetFrequency, cameraNoiseTransitionSpeed * Time.deltaTime);
     }
 
 
