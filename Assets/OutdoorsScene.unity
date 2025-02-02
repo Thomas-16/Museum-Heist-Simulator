@@ -388,6 +388,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &541662865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1024860913751546, guid: 194f8fbf67729fd40936b3465af2cc47,
+    type: 3}
+  m_PrefabInstance: {fileID: 728349257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &572498669
 GameObject:
   m_ObjectHideFlags: 3
@@ -506,7 +512,7 @@ MonoBehaviour:
   _rootTransform: {fileID: 0}
   _rootTransformOffset: {x: 0, y: 0, z: 0}
   _radius: 0.41
-  _height: 2
+  _height: 1.96
   _slopeLimit: 45
   _stepOffset: 0.45
   _perchOffset: 0.41
@@ -548,9 +554,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.41
-  m_Height: 2
+  m_Height: 1.96
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!54 &677876542
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -610,7 +616,7 @@ MonoBehaviour:
   _rotationMode: 0
   _rotationRate: 540
   _startingMovementMode: 1
-  _maxWalkSpeed: 5
+  _maxWalkSpeed: 3
   _minAnalogWalkSpeed: 0
   _maxAcceleration: 20
   _brakingDecelerationWalking: 20
@@ -652,11 +658,16 @@ MonoBehaviour:
   _camera: {fileID: 0}
   cameraParent: {fileID: 1849222297}
   virtualCamera: {fileID: 1097299447}
-  maxSprintSpeed: 7.5
-  maxWalkingSpeed: 5
+  playerAnimationController: {fileID: 728349260}
+  eyeTransform: {fileID: 1849222298}
+  maxSprintSpeed: 5
+  maxWalkingSpeed: 3
   walkingFOV: 80
   sprintingFOV: 87
   fovTransitionSpeed: 10
+  eyeNormalPos: {x: 0, y: 1.663589, z: 0.275}
+  eyeRunningPos: {x: 0, y: 1.51, z: 0.58}
+  eyeTransitionSpeed: 8
 --- !u!114 &677876545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,10 +736,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95242923974199034, guid: 194f8fbf67729fd40936b3465af2cc47,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c9fa18677e3cbb6459adb9885dc62bfa, type: 2}
+    - target: {fileID: 95242923974199034, guid: 194f8fbf67729fd40936b3465af2cc47,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1024860913751546, guid: 194f8fbf67729fd40936b3465af2cc47,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 728349260}
   m_SourcePrefab: {fileID: 100100000, guid: 194f8fbf67729fd40936b3465af2cc47, type: 3}
 --- !u!4 &728349258 stripped
 Transform:
@@ -736,6 +761,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 728349257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &728349260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541662865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b6e5911492191418be9ca6051006ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1097299446
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +813,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 80
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.01
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -808,7 +845,7 @@ Transform:
   m_GameObject: {fileID: 1097299446}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06825753, y: -0.90905076, z: 0.16487932, w: 0.37654018}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0.151}
+  m_LocalPosition: {x: 0, y: 1.6635885, z: 0.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -874,7 +911,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 80
   orthographic: 0
@@ -903,7 +940,7 @@ Transform:
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0.151}
+  m_LocalPosition: {x: 0, y: 1.6635885, z: 0.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1082,7 +1119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849222298}
   m_Layer: 0
-  m_Name: Eye
+  m_Name: EyesCameraTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1096,8 +1133,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849222297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0.151}
+  m_LocalRotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6635885, z: 0.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

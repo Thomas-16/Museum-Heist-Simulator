@@ -13,19 +13,22 @@ public class Player : Character
 
     [Header("References")]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private HumanAnimationsController playerAnimationController;
+    [SerializeField] private Transform eyeTransform;
     [Header("Settings")]
     [SerializeField] private float maxSprintSpeed = 8f;
     [SerializeField] private float maxWalkingSpeed = 5f;
     [SerializeField] private float walkingFOV = 80f;
     [SerializeField] private float sprintingFOV = 85f;
     [SerializeField] private float fovTransitionSpeed = .5f;
+    [SerializeField] private Vector3 eyeNormalPos;
+    [SerializeField] private Vector3 eyeRunningPos;
+    [SerializeField] private float eyeTransitionSpeed = 5f;
 
-    private new Rigidbody rigidbody;
 
     private new void Awake() {
         base.Awake();
 
-        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update() {
@@ -41,7 +44,15 @@ public class Player : Character
         }
         float targetFOV = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f ? sprintingFOV : walkingFOV;
         virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFOV, fovTransitionSpeed * Time.deltaTime);
+
+        playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && isRunning);
+        playerAnimationController.SetSpeed(characterMovement.velocity.magnitude / (isRunning ? maxSprintSpeed : maxWalkingSpeed));
+        playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (isRunning ? maxSprintSpeed : maxWalkingSpeed));
+
+        Vector3 targetEyePos = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f && characterMovement.forwardSpeed > 0.01f ? eyeRunningPos : eyeNormalPos;
+        eyeTransform.localPosition = Vector3.Lerp(eyeTransform.localPosition, targetEyePos, eyeTransitionSpeed * Time.deltaTime);
     }
+
 
     /// <summary>
     /// Add input (affecting Yaw).
