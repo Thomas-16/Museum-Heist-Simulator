@@ -47,7 +47,7 @@ public class Player : Character
         virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFOV, fovTransitionSpeed * Time.deltaTime);
 
         playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && isRunning);
-        playerAnimationController.SetSpeed(characterMovement.velocity.magnitude / (isRunning ? maxSprintSpeed : maxWalkingSpeed));
+        playerAnimationController.SetSpeed(characterMovement.forwardSpeed / maxWalkingSpeed / 1.5f);
         playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (isRunning ? maxSprintSpeed : maxWalkingSpeed));
 
         Vector3 targetEyePos = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f && characterMovement.forwardSpeed > 0.01f ? eyeRunningPos : eyeNormalPos;

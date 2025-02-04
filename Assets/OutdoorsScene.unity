@@ -634,7 +634,7 @@ MonoBehaviour:
   _rotationMode: 0
   _rotationRate: 540
   _startingMovementMode: 1
-  _maxWalkSpeed: 3
+  _maxWalkSpeed: 2.5
   _minAnalogWalkSpeed: 0
   _maxAcceleration: 20
   _brakingDecelerationWalking: 20
@@ -678,8 +678,8 @@ MonoBehaviour:
   virtualCamera: {fileID: 1097299447}
   playerAnimationController: {fileID: 728349260}
   eyeTransform: {fileID: 1849222298}
-  maxSprintSpeed: 5
-  maxWalkingSpeed: 3
+  maxSprintSpeed: 4
+  maxWalkingSpeed: 2.5
   walkingFOV: 80
   sprintingFOV: 87
   fovTransitionSpeed: 10
