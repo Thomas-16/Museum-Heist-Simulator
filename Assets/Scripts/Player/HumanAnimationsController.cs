@@ -23,4 +23,7 @@ public class HumanAnimationsController : MonoBehaviour
     public void SetSpeed(float speed) {
         animator.SetFloat(SPEED, speed);
     }
+    public void SetAbsSpeed(float absSpeed) {
+        animator.SetFloat("AbsSpeed", absSpeed);
+    }
 }

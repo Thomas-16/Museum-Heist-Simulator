@@ -34,6 +34,7 @@ public class Player : Character
 
     private void Update() {
         HandleRunning();
+        HandleMovementAnimations();
     }
     private void HandleRunning() {
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
@@ -45,10 +46,6 @@ public class Player : Character
         }
         float targetFOV = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f ? sprintingFOV : walkingFOV;
         virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFOV, fovTransitionSpeed * Time.deltaTime);
-
-        playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && isRunning);
-        playerAnimationController.SetSpeed(characterMovement.forwardSpeed / maxWalkingSpeed / 1.5f);
-        playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (isRunning ? maxSprintSpeed : maxWalkingSpeed));
 
         Vector3 targetEyePos = isRunning && characterMovement.velocity.sqrMagnitude > 0.01f && characterMovement.forwardSpeed > 0.01f ? eyeRunningPos : eyeNormalPos;
         eyeTransform.localPosition = Vector3.Lerp(eyeTransform.localPosition, targetEyePos, eyeTransitionSpeed * Time.deltaTime);
@@ -68,6 +65,12 @@ public class Player : Character
             Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain, targetAmplitude, cameraNoiseTransitionSpeed * Time.deltaTime);
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain =
             Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain, targetFrequency, cameraNoiseTransitionSpeed * Time.deltaTime);
+    }
+    private void HandleMovementAnimations() {
+        playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && Input.GetKey(KeyCode.LeftShift));
+        playerAnimationController.SetSpeed(characterMovement.forwardSpeed / maxWalkingSpeed / 1.5f);
+        playerAnimationController.SetAbsSpeed(new Vector2(characterMovement.forwardSpeed, characterMovement.sidewaysSpeed).magnitude / maxWalkingSpeed / 1.5f);
+        playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (Input.GetKey(KeyCode.LeftShift) ? maxSprintSpeed : maxWalkingSpeed));
     }
 
 
