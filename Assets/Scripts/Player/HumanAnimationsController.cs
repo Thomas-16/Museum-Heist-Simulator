@@ -13,7 +13,6 @@ public class HumanAnimationsController : MonoBehaviour
     private void Awake() {
         animator = GetComponent<Animator>();
     }
-
     public void SetIsRunning(bool isRunning) {
         animator.SetBool(RUN, isRunning);
     }
