@@ -24,13 +24,19 @@ public class FirstPersonPlayerInput : MonoBehaviour
 
     private void Start() {
         Cursor.lockState = CursorLockMode.Locked;
-    }
 
+        InputManager.Instance.OnJumpPressed += OnJumpPressedHandler;
+        InputManager.Instance.OnJumpReleased += OnJumpReleasedHandler;
+    }
+    
+    private void OnJumpPressedHandler() {
+        _character.Jump();
+    }
+    private void OnJumpReleasedHandler() {
+        _character.StopJumping();
+    }
     private void Update() {
-        Vector2 lookInput = new Vector2 {
-            x = Input.GetAxisRaw("Mouse X"),
-            y = Input.GetAxisRaw("Mouse Y")
-        };
+        Vector2 lookInput = InputManager.Instance.GetMouseInputVector();
 
         lookInput *= mouseSensitivity;
 
@@ -39,10 +45,7 @@ public class FirstPersonPlayerInput : MonoBehaviour
 
 
         // Movement input, relative to character's view direction
-        Vector2 inputMove = new Vector2() {
-            x = Input.GetAxisRaw("Horizontal"),
-            y = Input.GetAxisRaw("Vertical")
-        };
+        Vector2 inputMove = InputManager.Instance.GetMovementInputVector();
 
         Vector3 movementDirection = Vector3.zero;
 
@@ -51,12 +54,6 @@ public class FirstPersonPlayerInput : MonoBehaviour
 
         _character.SetMovementDirection(movementDirection);
 
-        // Jump input
-
-        if (Input.GetButtonDown("Jump"))
-            _character.Jump();
-        else if (Input.GetButtonUp("Jump"))
-            _character.StopJumping();
     }
 
 }

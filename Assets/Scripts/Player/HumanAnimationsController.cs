@@ -17,8 +17,9 @@ public class HumanAnimationsController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     private void Update() {
+        // JUST TESTING, THIS SHOULD ACTUALLY BE HANDLED IN PLAYER EMOTE MANAGER SCRIPT
         if(Input.GetKeyDown(KeyCode.T)) {
-            TriggerEmote(Random.Range(1, 9));
+            TriggerEmote(Random.Range(1, 7));
         }
     }
     public void SetIsRunning(bool isRunning) {

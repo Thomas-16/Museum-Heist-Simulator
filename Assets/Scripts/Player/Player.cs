@@ -37,8 +37,8 @@ public class Player : Character
         HandleMovementAnimations();
     }
     private void HandleRunning() {
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        if (Input.GetKey(KeyCode.LeftShift)) {
+        bool isRunning = InputManager.Instance.IsCrouchPressed();
+        if (isRunning) {
             maxWalkSpeed = maxSprintSpeed;
         }
         else {
@@ -67,10 +67,10 @@ public class Player : Character
             Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain, targetFrequency, cameraNoiseTransitionSpeed * Time.deltaTime);
     }
     private void HandleMovementAnimations() {
-        playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && Input.GetKey(KeyCode.LeftShift));
+        playerAnimationController.SetIsRunning(characterMovement.velocity.sqrMagnitude > 0.01f && InputManager.Instance.IsCrouchPressed());
         playerAnimationController.SetSpeed(characterMovement.forwardSpeed / maxWalkingSpeed / 1.5f);
         playerAnimationController.SetAbsSpeed(new Vector2(characterMovement.forwardSpeed, characterMovement.sidewaysSpeed).magnitude / maxWalkingSpeed / 1.5f);
-        playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (Input.GetKey(KeyCode.LeftShift) ? maxSprintSpeed : maxWalkingSpeed));
+        playerAnimationController.SetDirection(characterMovement.sidewaysSpeed / (InputManager.Instance.IsCrouchPressed() ? maxSprintSpeed : maxWalkingSpeed));
     }
 
 

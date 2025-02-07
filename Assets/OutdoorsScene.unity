@@ -622,8 +622,8 @@ GameObject:
   - component: {fileID: 572498670}
   - component: {fileID: 572498673}
   - component: {fileID: 572498671}
-  - component: {fileID: 572498674}
   - component: {fileID: 572498675}
+  - component: {fileID: 572498676}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -658,9 +658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
+  m_BindingMode: 3
   m_FollowOffset: {x: 0, y: 0, z: -0}
-  m_XDamping: 1
+  m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
   m_AngularDampingMode: 0
@@ -680,19 +680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &572498674
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572498669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
 --- !u!114 &572498675
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -710,6 +697,19 @@ MonoBehaviour:
   m_AmplitudeGain: 1
   m_FrequencyGain: 0.5
   mNoiseOffsets: {x: 550.307, y: 14.466614, z: 566.6816}
+--- !u!114 &572498676
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572498669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!1 &677876536
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,9 +765,9 @@ MonoBehaviour:
     maxDepenetrationIterations: 1
     enablePhysicsInteraction: 1
     allowPushCharacters: 1
-    impartPlatformMovement: 0
-    impartPlatformRotation: 0
-    impartPlatformVelocity: 0
+    impartPlatformMovement: 1
+    impartPlatformRotation: 1
+    impartPlatformVelocity: 1
   _minSlopeLimit: 0.7069833
 --- !u!136 &677876541
 CapsuleCollider:
@@ -881,9 +881,9 @@ MonoBehaviour:
   _gravity: {x: 0, y: -9.81, z: 0}
   _gravityScale: 1
   _useRootMotion: 0
-  _impartPlatformMovement: 0
-  _impartPlatformRotation: 0
-  _impartPlatformVelocity: 0
+  _impartPlatformMovement: 1
+  _impartPlatformRotation: 1
+  _impartPlatformVelocity: 1
   _enablePhysicsInteraction: 1
   _applyPushForceToCharacters: 1
   _applyStandingDownwardForce: 0
@@ -2928,7 +2928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.000000059604645, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.6635885, z: 0.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
