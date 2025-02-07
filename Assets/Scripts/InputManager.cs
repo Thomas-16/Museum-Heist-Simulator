@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void Update() {
-        if(Input.GetKeyDown("Jump")) {
+        if(Input.GetButtonDown("Jump")) {
             OnJumpPressed?.Invoke();
         }
         if(Input.GetButtonUp("Jump")) {
