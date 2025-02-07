@@ -51,13 +51,6 @@ public class FirstPersonPlayerInput : MonoBehaviour
 
         _character.SetMovementDirection(movementDirection);
 
-        // Crouch input
-
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
-            _character.Crouch();
-        else if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.C))
-            _character.UnCrouch();
-
         // Jump input
 
         if (Input.GetButtonDown("Jump"))

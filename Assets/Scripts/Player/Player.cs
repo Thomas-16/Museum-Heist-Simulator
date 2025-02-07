@@ -55,11 +55,11 @@ public class Player : Character
             targetAmplitude = 0.4f;
             targetFrequency = 0.25f;
         } else if(!isRunning && characterMovement.velocity.sqrMagnitude > 0.01f) {
-            targetAmplitude = 0.4f;
+            targetAmplitude = 0.3f;
             targetFrequency = 0.77f;
         } else if(isRunning && characterMovement.velocity.sqrMagnitude > 0.01f) {
-            targetAmplitude = 0.43f;
-            targetFrequency = 1.2f;
+            targetAmplitude = 0.3f;
+            targetFrequency = 1.1f;
         }
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain =
             Mathf.Lerp(virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain, targetAmplitude, cameraNoiseTransitionSpeed * Time.deltaTime);

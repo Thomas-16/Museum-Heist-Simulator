@@ -7,11 +7,19 @@ public class HumanAnimationsController : MonoBehaviour
     private const string SPEED = "Speed";
     private const string DIRECTION = "Direction";
     private const string RUN = "Run";
+    private const string ABS_SPEED = "AbsSpeed";
+    private const string EMOTE = "Emote";
+    private const string EMOTE_USED = "EmoteUsed";
 
     private Animator animator;
     
     private void Awake() {
         animator = GetComponent<Animator>();
+    }
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.T)) {
+            TriggerEmote(Random.Range(1, 9));
+        }
     }
     public void SetIsRunning(bool isRunning) {
         animator.SetBool(RUN, isRunning);
@@ -23,6 +31,10 @@ public class HumanAnimationsController : MonoBehaviour
         animator.SetFloat(SPEED, speed);
     }
     public void SetAbsSpeed(float absSpeed) {
-        animator.SetFloat("AbsSpeed", absSpeed);
+        animator.SetFloat(ABS_SPEED, absSpeed);
+    }
+    public void TriggerEmote(int emote) {
+        animator.SetInteger(EMOTE_USED, emote);
+        animator.SetTrigger(EMOTE);
     }
 }
