@@ -26,15 +26,22 @@ public class Player : Character
     [SerializeField] private float eyeTransitionSpeed = 5f;
     [SerializeField] private float cameraNoiseTransitionSpeed = 10f;
 
+    private PlayerEmoteController playerEmoteController;
+
 
     private new void Awake() {
         base.Awake();
 
+        playerEmoteController = GetComponent<PlayerEmoteController>();
     }
 
     private void Update() {
         HandleRunning();
         HandleMovementAnimations();
+
+        if(playerEmoteController.IsEmoting() && playerEmoteController.GetTimeSinceEmoteStarted() >= .5f && InputManager.Instance.IsControllingPlayer()) {
+            playerEmoteController.StopEmoting();
+        }
     }
     private void HandleRunning() {
         bool isRunning = InputManager.Instance.IsCrouchPressed();

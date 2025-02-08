@@ -16,12 +16,7 @@ public class HumanAnimationsController : MonoBehaviour
     private void Awake() {
         animator = GetComponent<Animator>();
     }
-    private void Update() {
-        // JUST TESTING, THIS SHOULD ACTUALLY BE HANDLED IN PLAYER EMOTE MANAGER SCRIPT
-        if(Input.GetKeyDown(KeyCode.T)) {
-            TriggerEmote(Random.Range(1, 7));
-        }
-    }
+
     public void SetIsRunning(bool isRunning) {
         animator.SetBool(RUN, isRunning);
     }
@@ -38,4 +33,8 @@ public class HumanAnimationsController : MonoBehaviour
         animator.SetInteger(EMOTE_USED, emote);
         animator.SetTrigger(EMOTE);
     }
+    public void StopEmoteAnimationInstantly() {
+        animator.Play("idle", 0, 0f);
+    }
+    public Animator GetAnimator() { return animator; }
 }

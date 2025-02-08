@@ -47,6 +47,6 @@ public class InputManager : MonoBehaviour
         };
     }
     public bool IsJumpPressed() {
-        return Input.GetKey("Jump");
+        return Input.GetButton("Jump");
     }
 }

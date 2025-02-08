@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 677876540}
   - component: {fileID: 677876544}
   - component: {fileID: 677876545}
+  - component: {fileID: 677876546}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -920,6 +921,19 @@ MonoBehaviour:
   mouseSensitivity: {x: 1, y: 1}
   minPitch: -80
   maxPitch: 80
+--- !u!114 &677876546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677876536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d8440446238214ba55943fb772aa11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimationController: {fileID: 728349260}
 --- !u!1001 &728349257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1537,7 +1551,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 83
     OrthographicSize: 5
-    NearClipPlane: 0.01
+    NearClipPlane: 0.02
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -2900,7 +2914,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.02
   far clip plane: 1000
   field of view: 83
   orthographic: 0
