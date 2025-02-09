@@ -27,8 +27,8 @@ public class InputManager : MonoBehaviour
             OnEmotePressed?.Invoke();
         }
     }
-    public bool IsControllingPlayer() {
-        return IsCrouchPressed() || GetMouseInputVector().sqrMagnitude > 0.02f || GetMovementInputVector().sqrMagnitude > 0.02f || IsJumpPressed();
+    public bool ShouldStopEmoting() {
+        return IsCrouchPressed() || GetMovementInputVector().sqrMagnitude > 0.02f || IsJumpPressed();
     }
 
     public bool IsCrouchPressed() {

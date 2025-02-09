@@ -39,7 +39,7 @@ public class Player : Character
         HandleRunning();
         HandleMovementAnimations();
 
-        if(playerEmoteController.IsEmoting() && playerEmoteController.GetTimeSinceEmoteStarted() >= .5f && InputManager.Instance.IsControllingPlayer()) {
+        if(playerEmoteController.IsEmoting() && playerEmoteController.GetTimeSinceEmoteStarted() >= .5f && InputManager.Instance.ShouldStopEmoting()) {
             playerEmoteController.StopEmoting();
         }
     }
